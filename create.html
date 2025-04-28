@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Flashcards - My Melody Flashcards</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <div class="my-melody-icon">
+        <img src="/images/mymelodylogo.png" alt="My Melody Logo" width="65" height="65">
+      </div>
+      <h1 class="logo-text">My Melody Flashcards</h1>
+    </div>
+  </header>
+  <nav>
+    <div class="nav-container">
+      <a href="mymelody.html" class="nav-link">Home</a>
+      <a href="categories.html" class="nav-link">Browse Categories</a>
+      <a href="create.html" class="nav-link">Create Flashcards</a>
+      <a href="study.html" class="nav-link">Study Mode</a>
+    </div>
+  </nav>
+  <main>
+    <section>
+      <h2 class="section-title">Create New Flashcard</h2>
+      <div class="create-form">
+        <form id="flashcard-form">
+          <div class="form-group">
+            <label for="question">Question:</label>
+            <input type="text" id="question" class="form-control" placeholder="Enter your question" required>
+          </div>
+          <div class="form-group">
+            <label for="answer">Answer:</label>
+            <textarea id="answer" class="form-control" rows="3" placeholder="Enter your answer" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="category">Category:</label>
+            <select id="category" class="form-control" required>
+              <option value="">Select a category</option>
+              <option value="math">Mathematics</option>
+              <option value="science">Science</option>
+              <option value="language">Languages</option>
+              <option value="history">History</option>
+            </select>
+          </div>
+          <button type="submit" class="btn">Create Flashcard</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 My Melody Flashcards. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#" class="footer-link">About</a>
+        <a href="#" class="footer-link">Resources</a>
+        <a href="#" class="footer-link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const flashcardForm = document.getElementById('flashcard-form');
+
+    flashcardForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const question = document.getElementById('question').value.trim();
+      const answer = document.getElementById('answer').value.trim();
+      const category = document.getElementById('category').value;
+
+      if (question && answer && category) {
+        alert('Flashcard created successfully!');
+        flashcardForm.reset();
+      } else {
+        alert('Please fill all required fields.');
+      }
+    });
+  </script>
+</body>
+</html>

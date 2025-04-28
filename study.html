@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Mode - My Melody Flashcards</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --primary: #ff9fc2;
+      --primary-light: #ffcee0;
+      --primary-dark: #e06a97;
+      --secondary: #ffffff;
+      --accent: #ff6ba9;
+      --text: #333333;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    body {
+      background-color: #fff9fa;
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+    }
+
+    .section-title {
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .study-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .top-controls {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px var(--shadow);
+    }
+
+    .category-select {
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      border: 2px solid var(--primary-light);
+      font-size: 1rem;
+    }
+
+    .progress-text {
+      font-weight: bold;
+      color: var(--primary-dark);
+      text-align: center;
+    }
+
+    /* PROGRESS BAR */
+    .progress-bar-container {
+      width: 100%;
+      height: 20px;
+      background-color: var(--primary-light);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px var(--shadow);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background-color: var(--accent);
+      border-radius: 20px;
+      transition: width 0.4s ease;
+    }
+
+    .flashcard-container {
+      perspective: 1000px;
+      width: 100%;
+      max-width: 500px;
+      height: 300px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .flashcard {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      cursor: pointer;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard-face {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      padding: 2rem;
+      background-image: url('images/mymelodyflashcardwallpaper.jpg');
+      background-size: cover;
+      background-position: center;
+      border: 3px solid var(--primary);
+      box-shadow: 0 4px 10px var(--shadow);
+    }
+
+    .flashcard-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo-container">
+      <div class="my-melody-icon">
+        <img src="/images/mymelodylogo.png" alt="my melody" width="65" height="65">
+      </div>
+      <h1 class="logo-text">My Melody Flashcards</h1>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-container">
+      <a href="mymelody.html" class="nav-link">Home</a>
+      <a href="categories.html" class="nav-link">Browse Categories</a>
+      <a href="create.html" class="nav-link">Create Flashcards</a>
+      <a href="study.html" class="nav-link">Study Mode</a>
+    </div>
+  </nav>
+
+  <main>
+    <h2 class="section-title">Study Mode</h2>
+
+    <div class="study-controls">
+      <div class="top-controls">
+        <select id="categoryFilter" class="category-select">
+          <option value="all">All Categories</option>
+          <option value="math">Mathematics</option>
+          <option value="science">Science</option>
+          <option value="language">Languages</option>
+          <option value="history">History</option>
+        </select>
+
+        <div class="buttons">
+          <button class="btn" id="prevBtn">Previous</button>
+          <button class="btn" id="shuffleBtn">Shuffle</button>
+          <button class="btn" id="nextBtn">Next</button>
+        </div>
+      </div>
+
+      <div class="progress-text" id="progressDisplay">Card 1 of 5</div>
+
+      <!-- PROGRESS BAR -->
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressBar"></div>
+      </div>
+    </div>
+
+    <div class="flashcard-container">
+      <div class="flashcard" id="flashcard">
+        <div class="flashcard-face flashcard-front" id="flashcard-question">
+          What is the capital of Japan?
+        </div>
+        <div class="flashcard-face flashcard-back" id="flashcard-answer">
+          Tokyo
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 My Melody Flashcards. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#" class="footer-link">About</a>
+      <a href="#" class="footer-link">Resources</a>
+      <a href="#" class="footer-link">Contact</a>
+    </div>
+  </footer>
+  
+  <script>
+    const flashcard = document.getElementById('flashcard');
+    const flashcardQuestion = document.getElementById('flashcard-question');
+    const flashcardAnswer = document.getElementById('flashcard-answer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    const progressDisplay = document.getElementById('progressDisplay');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const progressBar = document.getElementById('progressBar');
+
+    let flashcards = [
+      { question: "What is the capital of Japan?", answer: "Tokyo", category: "language" },
+      { question: "What is 5 × 6?", answer: "30", category: "math" },
+      { question: "Who discovered gravity?", answer: "Isaac Newton", category: "science" },
+      { question: "When was the Declaration of Independence signed?", answer: "1776", category: "history" },
+      { question: "What is the chemical symbol for water?", answer: "H₂O", category: "science" }
+    ];
+
+    let currentIndex = 0;
+    let currentDeck = [...flashcards];
+
+    function updateFlashcard() {
+      const card = currentDeck[currentIndex];
+      flashcardQuestion.textContent = card.question;
+      flashcardAnswer.textContent = card.answer;
+      progressDisplay.textContent = `Card ${currentIndex + 1} of ${currentDeck.length}`;
+
+      const progressPercent = ((currentIndex + 1) / currentDeck.length) * 100;
+      progressBar.style.width = `${progressPercent}%`;
+    }
+
+    flashcard.addEventListener('click', () => {
+      flashcard.classList.toggle('flipped');
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + currentDeck.length) % currentDeck.length;
+      flashcard.classList.remove('flipped');
+      updateFlashcard();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % currentDeck.length;
+      flashcard.classList.remove('flipped');
+      updateFlashcard();
+    });
+
+    shuffleBtn.addEventListener('click', () => {
+      for (let i = currentDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]];
+      }
+      currentIndex = 0;
+      flashcard.classList.remove('flipped');
+      updateFlashcard();
+    });
+
+    categoryFilter.addEventListener('change', () => {
+      const selectedCategory = categoryFilter.value;
+      if (selectedCategory === 'all') {
+        currentDeck = [...flashcards];
+      } else {
+        currentDeck = flashcards.filter(card => card.category === selectedCategory);
+      }
+      currentIndex = 0;
+      flashcard.classList.remove('flipped');
+      updateFlashcard();
+    });
+
+    updateFlashcard();
+  </script>
+
+</body>
+</html>
