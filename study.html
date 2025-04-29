@@ -1,5 +1,6 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -225,7 +226,7 @@
       <a href="#" class="footer-link">Contact</a>
     </div>
   </footer>
-  
+
   <script>
     const flashcard = document.getElementById('flashcard');
     const flashcardQuestion = document.getElementById('flashcard-question');
@@ -237,16 +238,24 @@
     const categoryFilter = document.getElementById('categoryFilter');
     const progressBar = document.getElementById('progressBar');
 
-    let flashcards = [
-      { question: "What is the capital of Japan?", answer: "Tokyo", category: "language" },
-      { question: "What is 5 × 6?", answer: "30", category: "math" },
-      { question: "Who discovered gravity?", answer: "Isaac Newton", category: "science" },
-      { question: "When was the Declaration of Independence signed?", answer: "1776", category: "history" },
-      { question: "What is the chemical symbol for water?", answer: "H₂O", category: "science" }
-    ];
-
+    let flashcards = [];
     let currentIndex = 0;
-    let currentDeck = [...flashcards];
+    let currentDeck = [];
+
+    fetch('terms2.json')
+      .then(response => response.json())
+      .then(data => {
+        flashcards = data.flashcards.map(card => ({
+          question: card.term,
+          answer: card.definition,
+          category: card.category || 'uncategorized'
+        }));
+        currentDeck = [...flashcards];
+        updateFlashcard();
+      })
+      .catch(error => {
+        console.error('Error loading flashcards:', error);
+      });
 
     function updateFlashcard() {
       const card = currentDeck[currentIndex];
@@ -284,6 +293,7 @@
       updateFlashcard();
     });
 
+    // Add this event listener for category filtering
     categoryFilter.addEventListener('change', () => {
       const selectedCategory = categoryFilter.value;
       if (selectedCategory === 'all') {
@@ -295,9 +305,8 @@
       flashcard.classList.remove('flipped');
       updateFlashcard();
     });
-
-    updateFlashcard();
   </script>
 
 </body>
+
 </html>
