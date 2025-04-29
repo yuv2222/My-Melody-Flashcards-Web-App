@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Melody Flashcards</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <header>
@@ -18,13 +20,13 @@
   </header>
 
   <nav>
-  <div class="nav-container">
-    <a href="mymelody.html" class="nav-link">Home</a>
-    <a href="categories.html" class="nav-link">Browse Categories</a>
-    <a href="create.html" class="nav-link">Create Flashcards</a>
-    <a href="study.html" class="nav-link">Study Mode</a>
-  </div>
-</nav>
+    <div class="nav-container">
+      <a href="mymelody.html" class="nav-link">Home</a>
+      <a href="categories.html" class="nav-link">Browse Categories</a>
+      <a href="create.html" class="nav-link">Create Flashcards</a>
+      <a href="study.html" class="nav-link">Study Mode</a>
+    </div>
+  </nav>
 
   <main>
     <section>
@@ -40,7 +42,7 @@
         </div>
       </div>
     </section>
-  
+
     <section>
       <h2 class="section-title">Create New Flashcard</h2>
       <div class="create-form">
@@ -57,7 +59,7 @@
             <label for="category">Category:</label>
             <select id="category" class="form-control">
               <option value="">Select a category</option>
-              <option value="math">Mathematics</option>
+              <option value="CompTIA">CompTIA A+ Core 1 Terms</option>
               <option value="science">Science</option>
               <option value="language">Languages</option>
               <option value="history">History</option>
@@ -67,34 +69,35 @@
         </form>
       </div>
     </section>
-    
+
     <section>
       <h2 class="section-title">Browse Categories</h2>
       <div class="categories-grid">
         <div class="category-card">
-          <div class="category-icon">📊</div>
-          <h3>Mathematics</h3>
+          <div class="category-icon">🎀</div>
+          <h3>CompTIA A+ Core 1 Terms</h3>
           <p>42 cards</p>
         </div>
         <div class="category-card">
-          <div class="category-icon">🧪</div>
-          <h3>Science</h3>
-          <p>28 cards</p>
+          <div class="category-icon">🎀</div>
+          <h3>CompTIA A+ Core 2 Terms</h3>
+          <p>126 cards</p>
         </div>
         <div class="category-card">
-          <div class="category-icon">🌎</div>
-          <h3>Languages</h3>
+          <div class="category-icon">🎀</div>
+          <h3>CompTIA Tech+
+            Terms</h3>
           <p>35 cards</p>
         </div>
         <div class="category-card">
-          <div class="category-icon">📜</div>
-          <h3>History</h3>
+          <div class="category-icon">🎀</div>
+          <h3>Cloud & Virtualization</h3>
           <p>19 cards</p>
         </div>
       </div>
     </section>
   </main>
-  
+
   <footer>
     <div class="footer-content">
       <p>&copy; 2025 My Melody Flashcards. All rights reserved.</p>
@@ -109,19 +112,19 @@
   <script>
     //Flashcard flip functionality
     const flashcard = document.getElementById('flashcard');
-    
-    flashcard.addEventListener('click', function() {
+
+    flashcard.addEventListener('click', function () {
       this.classList.toggle('flipped');
     });
-    
+
     //Simple form handling
     const flashcardForm = document.getElementById('flashcard-form');
-    
-    flashcardForm.addEventListener('submit', function(e) {
+
+    flashcardForm.addEventListener('submit', function (e) {
       e.preventDefault();
       const question = document.getElementById('question').value;
       const answer = document.getElementById('answer').value;
-      
+
       if (question && answer) {
         alert('Flashcard created successfully!');
         flashcardForm.reset();
@@ -131,4 +134,5 @@
     });
   </script>
 </body>
+
 </html>
