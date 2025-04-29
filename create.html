@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Create Flashcards - My Melody Flashcards</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <header>
     <div class="logo-container">
@@ -43,7 +45,7 @@
               <option value="CompTIA A+ Core 1 Terms">CompTIA A+ Core 1 Terms</option>
               <option value="CompTIA A+ Core 2 Terms">CompTIA A+ Core 2 Terms</option>
               <option value="CompTIA Tech+ Terms">CompTIA Tech+
-            Terms</option>
+                Terms</option>
               <option value="history">Cloud & Virtualization</option>
             </select>
           </div>
@@ -67,7 +69,7 @@
   <script>
     const flashcardForm = document.getElementById('flashcard-form');
 
-    flashcardForm.addEventListener('submit', function(e) {
+    flashcardForm.addEventListener('submit', function (e) {
       e.preventDefault();
       const question = document.getElementById('question').value.trim();
       const answer = document.getElementById('answer').value.trim();
@@ -82,4 +84,5 @@
     });
   </script>
 </body>
-</html> 
+
+</html>
