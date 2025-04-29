@@ -1,0 +1,12 @@
+{
+  "flashcards": [
+    {
+      "term": "CPU",
+      "definition": "Central Processing Unit - the primary component of a computer that performs instructions."
+    },
+    {
+      "term": "RAM",
+      "definition": "Random Access Memory - temporary storage that the computer uses to store data and instructions."
+    }
+  ]
+}

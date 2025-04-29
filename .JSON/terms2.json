@@ -1,0 +1,752 @@
+{
+  "flashcards": [
+    {
+      "term": "AAA",
+      "definition": "Authentication, Authorization, and Accounting - a framework for intelligently controlling access to computer resources, enforcing policies, and providing the information necessary for billing and auditing."
+    },
+    {
+      "term": "AC",
+      "definition": "Alternating Current - an electric current that periodically reverses direction, used in power delivery systems."
+    },
+    {
+      "term": "ACL",
+      "definition": "Access Control List - a list of permissions attached to an object that specifies which users or system processes are granted access to objects."
+    },
+    {
+      "term": "ADF",
+      "definition": "Automatic Document Feeder - a feature that takes multiple pages and feeds them through a scanner or copier automatically."
+    },
+    {
+      "term": "AES",
+      "definition": "Advanced Encryption Standard - a specification for the encryption of electronic data established by the U.S. National Institute of Standards and Technology."
+    },
+    {
+      "term": "AP",
+      "definition": "Access Point - a device that allows wireless devices to connect to a wired network using Wi-Fi or related standards."
+    },
+    {
+      "term": "APFS",
+      "definition": "Apple File System - a proprietary file system for macOS, iOS, tvOS, and watchOS developed by Apple Inc."
+    },
+    {
+      "term": "APIPA",
+      "definition": "Automatic Private Internet Protocol Addressing - a feature that automatically assigns an IP address when a DHCP server is not available."
+    },
+    {
+      "term": "APK",
+      "definition": "Android Package - the file format used for distributing and installing application software on Android operating systems."
+    },
+    {
+      "term": "ARM",
+      "definition": "Advanced RISC [Reduced Instruction Set Computer] Machine - a family of reduced instruction set computing architectures for computer processors."
+    },
+    {
+      "term": "ARP",
+      "definition": "Address Resolution Protocol - a communication protocol used for discovering the link layer address associated with a given IPv4 address."
+    },
+    {
+      "term": "ATA",
+      "definition": "Advanced Technology Attachment - a standard interface for connecting storage devices like hard drives to computers."
+    },
+    {
+      "term": "ATM",
+      "definition": "Asynchronous Transfer Mode - a telecommunications standard for digital transmission of multiple types of traffic."
+    },
+    {
+      "term": "ATX",
+      "definition": "Advanced Technology Extended - a motherboard and power supply configuration specification developed by Intel in 1995."
+    },
+    {
+      "term": "AUP",
+      "definition": "Acceptable Use Policy - a set of rules applied by the owner/manager of a network, website, or large computer system that restricts the ways in which the system may be used."
+    },
+    {
+      "term": "BIOS",
+      "definition": "Basic Input/Output System - firmware that initializes hardware during the booting process before the operating system starts."
+    },
+    {
+      "term": "BSOD",
+      "definition": "Blue Screen of Death - an error screen displayed on Windows computers following a fatal system error."
+    },
+    {
+      "term": "BYOD",
+      "definition": "Bring Your Own Device - a policy that allows employees to use personally owned devices for work purposes."
+    },
+    {
+      "term": "CAPTCHA",
+      "definition": "Completely Automated Public Turing Test to Tell Computers and Humans Apart - a challenge-response test used to determine whether the user is human."
+    },
+    {
+      "term": "CD",
+      "definition": "Compact Disc - an optical disc used to store digital data."
+    },
+    {
+      "term": "CDFS",
+      "definition": "Compact Disc File System - a file system designed to read data stored on CDs."
+    },
+    {
+      "term": "CDMA",
+      "definition": "Code-Division Multiple Access - a channel access method used in communication protocols to allow multiple users to share bandwidth."
+    },
+    {
+      "term": "CERT",
+      "definition": "Computer Emergency Response Team - an expert group that handles computer security incidents."
+    },
+    {
+      "term": "CIFS",
+      "definition": "Common Internet File System - a network file sharing protocol that provides shared access to files and printers across network nodes."
+    },
+    {
+      "term": "CMD",
+      "definition": "Command Prompt - a command line interpreter for Windows operating systems."
+    },
+    {
+      "term": "CMOS",
+      "definition": "Complementary Metal-Oxide Semiconductor - a technology used for making integrated circuits that stores system configuration data."
+    },
+    {
+      "term": "CPU",
+      "definition": "Central Processing Unit - the primary component of a computer that performs instructions."
+    },
+    {
+      "term": "CRL",
+      "definition": "Certificate Revocation List - a list of digital certificates that have been revoked by the issuing Certificate Authority."
+    },
+    {
+      "term": "DC",
+      "definition": "Direct Current - an electrical current that flows in a constant direction, typically used to power electronic devices."
+    },
+    {
+      "term": "DDoS",
+      "definition": "Distributed Denial of Service - an attack where multiple compromised systems are used to target a single system causing a denial of service."
+    },
+    {
+      "term": "DDR",
+      "definition": "Double Data Rate - a type of memory that transfers data on both the rising and falling edges of the clock signal."
+    },
+    {
+      "term": "DHCP",
+      "definition": "Dynamic Host Configuration Protocol - a network protocol that automatically assigns IP addresses and other network configuration parameters."
+    },
+    {
+      "term": "DIMM",
+      "definition": "Dual Inline Memory Module - a type of computer memory module composed of integrated circuits."
+    },
+    {
+      "term": "DKIM",
+      "definition": "DomainKeys Identified Mail - an email authentication method designed to detect email spoofing."
+    },
+    {
+      "term": "DMA",
+      "definition": "Direct Memory Access - a feature that allows certain hardware subsystems to access main system memory independent of the CPU."
+    },
+    {
+      "term": "DMARC",
+      "definition": "Domain-based Message Authentication, Reporting, and Conformance - an email authentication protocol that builds upon SPF and DKIM protocols."
+    },
+    {
+      "term": "DNS",
+      "definition": "Domain Name System - a system that translates domain names to IP addresses, allowing users to access websites using names instead of numbers."
+    },
+    {
+      "term": "DoS",
+      "definition": "Denial of Service - an attack meant to shut down a machine or network, making it inaccessible to its intended users."
+    },
+    {
+      "term": "DRAM",
+      "definition": "Dynamic Random-Access Memory - a type of memory that stores each bit of data in a separate capacitor and needs to be refreshed periodically."
+    },
+    {
+      "term": "DRM",
+      "definition": "Digital Rights Management - a set of access control technologies for restricting the use of proprietary hardware and copyrighted works."
+    },
+    {
+      "term": "DSL",
+      "definition": "Digital Subscriber Line - a technology for bringing high-bandwidth information over regular copper telephone lines."
+    },
+    {
+      "term": "DVI",
+      "definition": "Digital Visual Interface - a video display interface designed to maximize the visual quality of digital display devices."
+    },
+    {
+      "term": "DVI-D",
+      "definition": "Digital Visual Interface-Digital - a DVI connector that supports digital signals only."
+    },
+    {
+      "term": "ECC",
+      "definition": "Error Correcting Code - a method used to detect and correct errors in computer memory systems."
+    },
+    {
+      "term": "EFS",
+      "definition": "Encrypting File System - a Windows feature that provides file system-level encryption to protect files from unauthorized access."
+    },
+    {
+      "term": "EMI",
+      "definition": "Electromagnetic Interference - disturbance that affects electrical circuits due to electromagnetic radiation or conduction."
+    },
+    {
+      "term": "EOL",
+      "definition": "End-of-Life - a term used when a product is no longer supported or manufactured by its creator."
+    },
+    {
+      "term": "eSATA",
+      "definition": "External Serial Advanced Technology Attachment - an external interface for SATA technologies designed for external storage devices."
+    },
+    {
+      "term": "ESD",
+      "definition": "Electrostatic Discharge - the sudden flow of electricity between two electrically charged objects caused by contact."
+    },
+    {
+      "term": "EULA",
+      "definition": "End-User License Agreement - a legal contract between a software application author/publisher and the user of that application."
+    },
+    {
+      "term": "exFAT",
+      "definition": "Extensible File Allocation Table - a file system designed for flash drives and SD cards, addressing the limitations of FAT32."
+    },
+    {
+      "term": "ext",
+      "definition": "Extended File System - a file system commonly used in Linux operating systems."
+    },
+    {
+      "term": "FAT",
+      "definition": "File Allocation Table - a file system architecture used in many operating systems to track the location of files stored on a disk."
+    },
+    {
+      "term": "FAT12",
+      "definition": "12-bit File Allocation Table - an early version of the FAT file system using 12 bits for cluster addresses, mainly used for floppy disks."
+    },
+    {
+      "term": "FAT16",
+      "definition": "16-bit File Allocation Table - a FAT file system using 16 bits for cluster addresses, allowing for larger storage capacities than FAT12."
+    },
+    {
+      "term": "FAT32",
+      "definition": "32-bit File Allocation Table - an enhanced version of the FAT file system using 32 bits, supporting storage devices up to 2TB."
+    },
+    {
+      "term": "FSB",
+      "definition": "Front-Side Bus - a connection between the CPU and the northbridge in older computer architectures."
+    },
+    {
+      "term": "FTP",
+      "definition": "File Transfer Protocol - a standard network protocol used for transferring files between a client and server on a computer network."
+    },
+    {
+      "term": "GFS",
+      "definition": "Grandfather-Father-Son - a common backup rotation scheme for data backup and archive."
+    },
+    {
+      "term": "GPS",
+      "definition": "Global Positioning System - a satellite-based navigation system providing location and time information."
+    },
+    {
+      "term": "GPT",
+      "definition": "GUID [Globally Unique Identifier] Partition Table - a standard for the layout of the partition table on a physical storage device."
+    },
+    {
+      "term": "GPU",
+      "definition": "Graphics Processing Unit - a specialized electronic circuit designed to rapidly manipulate and alter memory to accelerate the creation of images."
+    },
+    {
+      "term": "GSM",
+      "definition": "Global System for Mobile Communications - a standard developed to describe the protocols for second-generation digital cellular networks."
+    },
+    {
+      "term": "GUI",
+      "definition": "Graphical User Interface - a form of user interface that allows users to interact with electronic devices through graphical icons and visual indicators."
+    },
+    {
+      "term": "GUID",
+      "definition": "Globally Unique Identifier - a unique reference number used as an identifier in computer software."
+    },
+    {
+      "term": "HAL",
+      "definition": "Hardware Abstraction Layer - a software subsystem for UNIX-like or other operating systems providing an abstraction of computer hardware."
+    },
+    {
+      "term": "HAV",
+      "definition": "Hardware-assisted Virtualization - processor features that improve virtualization performance by offloading some tasks from the virtualization software."
+    },
+    {
+      "term": "HCL",
+      "definition": "Hardware Compatibility List - a list of hardware devices known to work with a particular operating system or software program."
+    },
+    {
+      "term": "HDCP",
+      "definition": "High-bandwidth Digital Content Protection - a form of digital copy protection to prevent copying of digital audio and video content."
+    },
+    {
+      "term": "HDD",
+      "definition": "Hard Disk Drive - a data storage device that uses magnetic storage to store and retrieve digital information."
+    },
+    {
+      "term": "HDMI",
+      "definition": "High-Definition Multimedia Interface - a proprietary audio/video interface for transmitting uncompressed video and audio data."
+    },
+    {
+      "term": "HSM",
+      "definition": "Hardware Security Module - a physical computing device that safeguards and manages digital keys and performs encryption functions."
+    },
+    {
+      "term": "HTML",
+      "definition": "Hypertext Markup Language - the standard markup language for documents designed to be displayed in a web browser."
+    },
+    {
+      "term": "HTTP",
+      "definition": "Hypertext Transfer Protocol - an application layer protocol for distributed, collaborative, hypermedia information systems."
+    },
+    {
+      "term": "HTTPS",
+      "definition": "Hypertext Transfer Protocol Secure - an extension of HTTP used for secure communication over a computer network."
+    },
+    {
+      "term": "I/O",
+      "definition": "Input/Output - the communication between an information processing system (such as a computer) and the outside world."
+    },
+    {
+      "term": "IaaS",
+      "definition": "Infrastructure as a Service - a form of cloud computing that provides virtualized computing resources over the internet."
+    },
+    {
+      "term": "ICR",
+      "definition": "Intelligent Character Recognition - an advanced OCR system that can recognize handwritten characters."
+    },
+    {
+      "term": "IDE",
+      "definition": "Integrated Drive Electronics - a standard interface for connecting storage devices like hard drives and optical drives to computers."
+    },
+    {
+      "term": "IDS",
+      "definition": "Intrusion Detection System - a device or software application that monitors a network for malicious activities or policy violations."
+    },
+    {
+      "term": "IEEE",
+      "definition": "Institute of Electrical and Electronics Engineers - a professional association that develops standards for electronics and electrical engineering."
+    },
+    {
+      "term": "IMAP",
+      "definition": "Internet Mail Access Protocol - a protocol for accessing email on a remote mail server."
+    },
+    {
+      "term": "IOPS",
+      "definition": "Input/Output Operations Per Second - a performance measurement used to characterize computer storage devices."
+    },
+    {
+      "term": "IoT",
+      "definition": "Internet of Things - the network of physical objects embedded with electronics, software, sensors, and connectivity enabling data exchange."
+    },
+    {
+      "term": "IP",
+      "definition": "Internet Protocol - the principal communications protocol for relaying datagrams across network boundaries in the internet."
+    },
+    {
+      "term": "IPS",
+      "definition": "In-plane Switching - a screen technology for LCD displays that offers better color reproduction and viewing angles."
+    },
+    {
+      "term": "IPSec",
+      "definition": "Internet Protocol Security - a secure network protocol suite authenticating and encrypting IP packets in communication sessions."
+    },
+    {
+      "term": "IR",
+      "definition": "Infrared - electromagnetic radiation with wavelengths longer than visible light, used in remote controls and wireless data transfer."
+    },
+    {
+      "term": "IrDA",
+      "definition": "Infrared Data Association - an organization that created a standard for infrared data transmission."
+    },
+    {
+      "term": "IRP",
+      "definition": "Incident Response Plan - a set of instructions to help IT staff detect, respond to, and recover from network security incidents."
+    },
+    {
+      "term": "ISO",
+      "definition": "International Organization for Standardization - an international standard-setting organization that develops and publishes worldwide technical standards."
+    },
+    {
+      "term": "ISP",
+      "definition": "Internet Service Provider - an organization that provides services for accessing and using the internet."
+    },
+    {
+      "term": "ITX",
+      "definition": "Information Technology eXtended - a motherboard form factor that includes a series of small motherboard form factors."
+    },
+    {
+      "term": "KB",
+      "definition": "Knowledge Base - a centralized repository for storing and organizing information and resources about a particular field."
+    },
+    {
+      "term": "KVM",
+      "definition": "Keyboard-Video-Mouse - a hardware device that allows controlling multiple computers from a single keyboard, video monitor, and mouse."
+    },
+    {
+      "term": "LAN",
+      "definition": "Local Area Network - a computer network that interconnects computers within a limited area such as a residence, school, or office building."
+    },
+    {
+      "term": "LC",
+      "definition": "Lucent Connector - a type of fiber optic connector used in telecommunications and networking."
+    },
+    {
+      "term": "LCD",
+      "definition": "Liquid Crystal Display - a flat-panel display technology commonly used in digital devices for displaying visual output."
+    },
+    {
+      "term": "LDAP",
+      "definition": "Lightweight Directory Access Protocol - an open, vendor-neutral, industry standard protocol for accessing and maintaining distributed directory information services."
+    },
+    {
+      "term": "LED",
+      "definition": "Light-emitting Diode - a semiconductor light source that emits light when current flows through it."
+    },
+    {
+      "term": "MAC",
+      "definition": "Media Access Control/Mandatory Access Control - both a unique identifier assigned to network interfaces and a security model for controlling access based on security clearance."
+    },
+    {
+      "term": "MAM",
+      "definition": "Mobile Application Management - software and services used to secure, manage, and distribute mobile applications used in business settings."
+    },
+    {
+      "term": "MAN",
+      "definition": "Metropolitan Area Network - a computer network that interconnects users within a geographical area or region larger than a LAN but smaller than a WAN."
+    },
+    {
+      "term": "MBR",
+      "definition": "Master Boot Record - a special type of boot sector at the beginning of a partitioned computer mass storage device."
+    },
+    {
+      "term": "MDM",
+      "definition": "Mobile Device Management - software that allows administrators to control, secure, and enforce policies on smartphones, tablets, and other devices."
+    },
+    {
+      "term": "MFA",
+      "definition": "Multifactor Authentication - a security system that requires more than one method of authentication from independent categories of credentials."
+    },
+    {
+      "term": "MFD",
+      "definition": "Multifunction Device - an office machine that incorporates the functionality of multiple devices into one."
+    },
+    {
+      "term": "MFP",
+      "definition": "Multifunction Printer - a device that combines printing, scanning, copying, and sometimes faxing capabilities in one unit."
+    },
+    {
+      "term": "MMC",
+      "definition": "Microsoft Management Console - a component of Windows that provides system administrators with a tool for configuring and monitoring the system."
+    },
+    {
+      "term": "MOU",
+      "definition": "Memorandum of Understanding - a formal agreement between two or more parties outlining terms and details of mutual understanding."
+    },
+    {
+      "term": "MSDS",
+      "definition": "Material Safety Data Sheet - a document containing information on potential hazards and how to work safely with a chemical product."
+    },
+    {
+      "term": "MSRA",
+      "definition": "Microsoft Remote Assistance - a feature of Windows that allows a user to temporarily view or control a remote Windows computer for troubleshooting."
+    },
+    {
+      "term": "MX",
+      "definition": "Mail Exchange - a type of DNS record that specifies mail servers responsible for accepting email messages for a domain."
+    },
+    {
+      "term": "NAC",
+      "definition": "Network Access Control - an approach to computer security that attempts to unify endpoint security technology."
+    },
+    {
+      "term": "NAT",
+      "definition": "Network Address Translation - a method of remapping one IP address space into another by modifying network address information."
+    },
+    {
+      "term": "NDA",
+      "definition": "Non-disclosure Agreement - a legal contract between parties that outlines confidential information that the parties wish to share."
+    },
+    {
+      "term": "NetBIOS",
+      "definition": "Networked Basic Input/Output System - an API that provides services related to the session layer of the OSI model allowing applications on separate computers to communicate."
+    },
+    {
+      "term": "NetBT",
+      "definition": "NetBIOS over TCP/IP - an extension of the NetBIOS protocol that allows it to be used over TCP/IP networks."
+    },
+    {
+      "term": "NFC",
+      "definition": "Near-field Communication - a set of communication protocols that enable two electronic devices to establish communication by bringing them within 4 cm of each other."
+    },
+    {
+      "term": "NFS",
+      "definition": "Network File System - a distributed file system protocol allowing a user on a client computer to access files over a network."
+    },
+    {
+      "term": "NIC",
+      "definition": "Network Interface Card - a hardware component that connects a computer to a computer network."
+    },
+    {
+      "term": "NTFS",
+      "definition": "New Technology File System - a proprietary file system developed by Microsoft used in Windows operating systems with enhanced features over FAT."
+    },
+    {
+      "term": "NVMe",
+      "definition": "Non-volatile Memory Express - a communications interface and driver that defines a command set and feature set for PCIe-based SSDs."
+    },
+    {
+      "term": "OCR",
+      "definition": "Optical Character Recognition - the electronic or mechanical conversion of images of typed, handwritten or printed text into machine-encoded text."
+    },
+    {
+      "term": "OLED",
+      "definition": "Organic Light-emitting Diode - a light-emitting diode in which the emissive electroluminescent layer is a film of organic compound that emits light."
+    },
+    {
+      "term": "ONT",
+      "definition": "Optical Network Terminal - a device that terminates the fiber optic line, converts optical signals to electrical signals, and delivers voice, video, and data services."
+    },
+    {
+      "term": "OS",
+      "definition": "Operating System - software that manages computer hardware and software resources and provides common services for computer programs."
+    },
+    {
+      "term": "PaaS",
+      "definition": "Platform as a Service - a category of cloud computing services that provides a platform allowing customers to develop, run, and manage applications."
+    },
+    {
+      "term": "PAN",
+      "definition": "Personal Area Network - a computer network used for communication among personal devices that are in close proximity to one person."
+    },
+    {
+      "term": "PC",
+      "definition": "Personal Computer - a general-purpose computer whose size, capabilities, and price make it feasible for individual use."
+    },
+    {
+      "term": "PCIe",
+      "definition": "Peripheral Component Interconnect Express - a high-speed serial computer expansion bus standard designed to replace older PCI standards."
+    },
+    {
+      "term": "PCL",
+      "definition": "Printer Command Language - a page description language developed by Hewlett-Packard as a printer protocol."
+    },
+    {
+      "term": "PE",
+      "definition": "Preinstallation Environment - a lightweight version of Windows used for the deployment of workstations and servers or troubleshooting."
+    },
+    {
+      "term": "PII",
+      "definition": "Personally Identifiable Information - information that can be used to identify, contact, or locate a single person or identify an individual in context."
+    },
+    {
+      "term": "PIN",
+      "definition": "Personal Identification Number - a numeric password used to authenticate a user to a system."
+    },
+    {
+      "term": "PKI",
+      "definition": "Public Key Infrastructure - a set of roles, policies, hardware, software and procedures needed to create, manage, distribute, use, store, and revoke digital certificates."
+    },
+    {
+      "term": "PoE",
+      "definition": "Power over Ethernet - a technology that allows Ethernet cables to carry electrical power alongside data."
+    },
+    {
+      "term": "POP3",
+      "definition": "Post Office Protocol 3 - a standard protocol used by email clients to retrieve email from a mail server."
+    },
+    {
+      "term": "POST",
+      "definition": "Power-on Self-Test - a diagnostic testing sequence that runs when a computer is first powered on."
+    },
+    {
+      "term": "PPP",
+      "definition": "Point-to-Point Protocol - a data link protocol commonly used to establish a direct connection between two networking nodes."
+    },
+    {
+      "term": "PRL",
+      "definition": "Preferred Roaming List - a database stored in a wireless device that contains information used to acquire cellular service while roaming."
+    },
+    {
+      "term": "PSU",
+      "definition": "Power Supply Unit - a component that supplies electrical power to a computer or related device."
+    },
+    {
+      "term": "PXE",
+      "definition": "Preboot Execution Environment - an environment to boot computers using a network interface independently of data storage devices or installed operating systems."
+    },
+    {
+      "term": "RADIUS",
+      "definition": "Remote Authentication Dial-in User Service - a networking protocol that provides centralized Authentication, Authorization, and Accounting management for users who connect to a network service."
+    },
+    {
+      "term": "RAID",
+      "definition": "Redundant Array of Independent (or Inexpensive) Disks - a data storage virtualization technology that combines multiple physical disk drive components into one or more logical units."
+    },
+    {
+      "term": "RAM",
+      "definition": "Random-access Memory - temporary storage that the computer uses to store data and instructions while the computer is running."
+    },
+    {
+      "term": "RDP",
+      "definition": "Remote Desktop Protocol - a proprietary protocol developed by Microsoft for remote display and input capabilities over network connections."
+    },
+    {
+      "term": "RF",
+      "definition": "Radio Frequency - the oscillation rate of electromagnetic radiation used in radio communication, typically from 30 kHz to 300 GHz."
+    },
+    {
+      "term": "RFI",
+      "definition": "Radio Frequency Interference - electromagnetic disturbance that affects an electrical circuit due to electromagnetic induction or radiation emitted from an external source."
+    },
+    {
+      "term": "RFID",
+      "definition": "Radio Frequency Identification - uses electromagnetic fields to automatically identify and track tags attached to objects."
+    },
+    {
+      "term": "RJ11",
+      "definition": "Registered Jack Function 11 - a type of connector commonly used for telephone wiring and dial-up network connections."
+    },
+    {
+      "term": "RJ45",
+      "definition": "Registered Jack Function 45 - a type of connector commonly used for Ethernet networking."
+    },
+    {
+      "term": "RMM",
+      "definition": "Remote Monitoring and Management - a type of software designed to help managed IT service providers remotely and proactively monitor client endpoints, networks, and computers."
+    },
+    {
+      "term": "RTO",
+      "definition": "Recovery Time Objective - the maximum acceptable length of time that can elapse during a disruption before the consequences become unacceptable."
+    },
+    {
+      "term": "S.M.A.R.T.",
+      "definition": "Self-monitoring Analysis and Reporting Technology - a monitoring system included in computer hard disk drives that detects and reports various indicators of reliability."
+    },
+    {
+      "term": "SaaS",
+      "definition": "Software as a Service - a software licensing and delivery model in which software is licensed on a subscription basis and centrally hosted."
+    },
+    {
+      "term": "SAN",
+      "definition": "Storage Area Network - a dedicated network that provides access to consolidated, block-level data storage."
+    },
+    {
+      "term": "SAS",
+      "definition": "Serial Attached SCSI - a point-to-point serial protocol that moves data to and from computer storage devices such as hard drives and tape drives."
+    },
+    {
+      "term": "SATA",
+      "definition": "Serial Advanced Technology Attachment - a computer bus interface that connects host bus adapters to mass storage devices such as hard disk drives and optical drives."
+    },
+    {
+      "term": "SC",
+      "definition": "Subscriber Connector - a fiber optic connector with a push-pull latching mechanism that ensures a positive connection."
+    },
+    {
+      "term": "SCADA",
+      "definition": "Supervisory Control and Data Acquisition - a control system architecture comprising computers, networked data communications and graphical user interfaces for process control."
+    },
+    {
+      "term": "SCP",
+      "definition": "Secure Copy Protection - a means of securely transferring computer files between a local host and a remote host or between two remote hosts."
+    },
+    {
+      "term": "SCSI",
+      "definition": "Small Computer System Interface - a standard for physically connecting and transferring data between computers and peripheral devices."
+    },
+    {
+      "term": "SDN",
+      "definition": "Software-defined Networking - an approach to network management that enables dynamic, programmatically efficient network configuration."
+    },
+    {
+      "term": "SFTP",
+      "definition": "Secure File Transfer Protocol - a network protocol that provides file access, file transfer, and file management over any reliable data stream."
+    },
+    {
+      "term": "SIM",
+      "definition": "Subscriber Identity Module - an integrated circuit that securely stores the international mobile subscriber identity and related key used to identify and authenticate subscribers."
+    },
+    {
+      "term": "SIMM",
+      "definition": "Single Inline Memory Module - a type of memory module containing random access memory used in computers."
+    },
+    {
+      "term": "SMB",
+      "definition": "Server Message Block - a network file sharing protocol that provides shared access to files, printers, and serial ports between nodes on a network."
+    },
+    {
+      "term": "SMS",
+      "definition": "Short Message Service - a text messaging service component of most telephone, Internet, and mobile device systems."
+    },
+    {
+      "term": "SMTP",
+      "definition": "Simple Mail Transfer Protocol - an internet standard for email transmission across IP networks."
+    },
+    {
+      "term": "SNMP",
+      "definition": "Simple Network Management Protocol - an Internet Standard protocol for collecting and organizing information about managed devices on IP networks."
+    },
+    {
+      "term": "SNTP",
+      "definition": "Simple Network Time Protocol - a simplified version of NTP used to synchronize computer clocks in a network."
+    },
+    {
+      "term": "SODIMM",
+      "definition": "Small Outline Dual Inline Memory Module - a smaller alternative to DIMM, often used in laptops, mini-PCs, and other small form factor computers."
+    },
+    {
+      "term": "SOHO",
+      "definition": "Small Office/Home Office - a business category referring to a type of business operation involving 1-10 workers."
+    },
+    {
+      "term": "SPF",
+      "definition": "Sender Policy Framework - an email authentication method designed to detect forging sender addresses during the delivery of email."
+    },
+    {
+      "term": "SQL",
+      "definition": "Structured Query Language - a domain-specific language used in programming and designed for managing data in relational database management systems."
+    },
+    {
+      "term": "SRAM",
+      "definition": "Static Random-access Memory - a type of random-access memory that uses latching circuitry to store each bit."
+    },
+    {
+      "term": "SSD",
+      "definition": "Solid-State Drive - A data storage device that uses flash memory to store data, offering faster speeds, better durability, and lower power consumption than traditional hard disk drives. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    },
+    {
+      "term": "SSH",
+      "definition": "Secure Shell - A cryptographic network protocol used to securely access and manage remote systems over an unsecured network. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    },
+    {
+      "term": "SSID",
+      "definition": "Service Set Identifier - The name assigned to a Wi-Fi network, which allows devices to identify and connect to the network. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    },
+    {
+      "term": "SSL",
+      "definition": "Secure Sockets Layer - A standard security protocol used to establish encrypted links between a web server and a browser, ensuring secure data transmission. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    },
+    {
+      "term": "SSO",
+      "definition": "Single Sign-on - An authentication process that allows a user to access multiple applications with one set of login credentials. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    },
+    {
+      "term": "ST",
+      "definition": "Straight Tip - A type of fiber optic connector with a bayonet-style plug and socket, often used in networking environments. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    },
+    {
+      "term": "STP",
+      "definition": "Shielded Twisted Pair - A type of cabling that includes shielding to reduce electromagnetic interference, often used in environments with high interference. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    },
+    {
+      "term": "TACACS",
+      "definition": "Terminal Access Controller Access-Control System - A protocol used for remote authentication and related services, often used in enterprise network environments. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    },
+    {
+      "term": "TCP",
+      "definition": "Transmission Control Protocol - A core protocol of the Internet Protocol Suite that ensures reliable, ordered, and error-checked delivery of data between applications. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    },
+    {
+      "term": "TCP/IP",
+      "definition": "Transmission Control Protocol/Internet Protocol - The foundational communication protocols for the internet and local networks, defining how data is packetized, addressed, transmitted, and received. This term is essential for understanding core IT concepts and is commonly referenced in certification exams such as CompTIA A+."
+    }
+  ]
+}
