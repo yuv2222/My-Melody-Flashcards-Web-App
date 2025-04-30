@@ -7,154 +7,6 @@
   <title>Study Mode - My Melody Flashcards</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    :root {
-      --primary: #ff9fc2;
-      --primary-light: #ffcee0;
-      --primary-dark: #e06a97;
-      --secondary: #ffffff;
-      --accent: #ff6ba9;
-      --text: #333333;
-      --shadow: rgba(0, 0, 0, 0.1);
-    }
-
-    body {
-      background-color: #fff9fa;
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    main {
-      flex: 1;
-      padding: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      width: 100%;
-    }
-
-    .section-title {
-      color: var(--primary-dark);
-      margin-bottom: 1rem;
-      border-bottom: 2px solid var(--primary-light);
-      padding-bottom: 0.5rem;
-      text-align: center;
-    }
-
-    .study-controls {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .top-controls {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .btn {
-      background-color: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.8rem 2rem;
-      border-radius: 20px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      background-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px var(--shadow);
-    }
-
-    .category-select {
-      padding: 0.5rem 1rem;
-      border-radius: 10px;
-      border: 2px solid var(--primary-light);
-      font-size: 1rem;
-    }
-
-    .progress-text {
-      font-weight: bold;
-      color: var(--primary-dark);
-      text-align: center;
-    }
-
-    /* PROGRESS BAR */
-    .progress-bar-container {
-      width: 100%;
-      height: 20px;
-      background-color: var(--primary-light);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px var(--shadow);
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      width: 0%;
-      background-color: var(--accent);
-      border-radius: 20px;
-      transition: width 0.4s ease;
-    }
-
-    .flashcard-container {
-      perspective: 1000px;
-      width: 100%;
-      max-width: 500px;
-      height: 300px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .flashcard {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.6s;
-      cursor: pointer;
-    }
-
-    .flashcard.flipped {
-      transform: rotateY(180deg);
-    }
-
-    .flashcard-face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-      padding: 2rem;
-      background-image: url('images/mymelodyflashcardwallpaper.jpg');
-      background-size: cover;
-      background-position: center;
-      border: 3px solid var(--primary);
-      box-shadow: 0 4px 10px var(--shadow);
-    }
-
-    .flashcard-back {
-      transform: rotateY(180deg);
-    }
   </style>
 </head>
 
@@ -180,15 +32,12 @@
 
   <main>
     <h2 class="section-title">Study Mode</h2>
+    <h3 id="categoryTitle" class="category-title-simple" style="display:none;"></h3>
 
     <div class="study-controls">
       <div class="top-controls">
         <select id="categoryFilter" class="category-select">
           <option value="all">All Categories</option>
-          <option value="CompTIA A+ Core 1 Terms">CompTIA A+ Core 1 Terms</option>
-          <option value="CompTIA A+ Core 2 Terms">CompTIA A+ Core 2 Terms</option>
-          <option value="CompTIA Tech+ Terms">CompTIA Tech+ Terms</option>
-          <option value="Cloud & Virtualization">Cloud & Virtualization</option>
         </select>
 
         <input type="text" id="searchInput" class="category-select" placeholder="Search terms..." />
@@ -202,9 +51,16 @@
 
       <div class="progress-text" id="progressDisplay">Card 1 of 5</div>
 
+      <div class="progress-instruction" style="font-size: 0.85rem; color: #666; margin-bottom: 4px;">
+        Hover over the progress bar to see which card you'll jump to.
+      </div>
+
       <!-- PROGRESS BAR -->
-      <div class="progress-bar-container">
+      <div class="progress-bar-container" id="progressBarContainer">
         <div class="progress-bar-fill" id="progressBar"></div>
+        <div id="progressTooltip" class="progress-tooltip"
+          style="display:none; position:absolute; pointer-events:none; padding: 4px 8px; background: var(--primary-dark); color: white; border-radius: 4px; font-size: 0.8rem; white-space: nowrap; transform: translate(-50%, -150%);">
+        </div>
       </div>
     </div>
 
@@ -239,6 +95,8 @@
     const progressDisplay = document.getElementById('progressDisplay');
     const categoryFilter = document.getElementById('categoryFilter');
     const progressBar = document.getElementById('progressBar');
+    const progressBarContainer = document.getElementById('progressBarContainer');
+    const progressTooltip = document.getElementById('progressTooltip');
 
     let flashcards = [];
     let currentIndex = 0;
@@ -296,6 +154,47 @@
 
     flashcard.addEventListener('click', () => {
       flashcard.classList.toggle('flipped');
+    });
+
+    // Add click event listener to progress bar container for jumping to flashcards
+    progressBarContainer.addEventListener('click', (event) => {
+      if (currentDeck.length === 0) return;
+      const rect = progressBarContainer.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const width = rect.width;
+      const clickRatio = clickX / width;
+      const newIndex = Math.floor(clickRatio * currentDeck.length);
+      currentIndex = Math.min(newIndex, currentDeck.length - 1);
+      flashcard.classList.remove('flipped');
+      updateFlashcard();
+    });
+
+    // Show tooltip on hover with card number
+    progressBarContainer.addEventListener('mousemove', (event) => {
+      if (currentDeck.length === 0) {
+        progressTooltip.style.display = 'none';
+        return;
+      }
+      const rect = progressBarContainer.getBoundingClientRect();
+      const mouseX = event.clientX - rect.left;
+      const width = rect.width;
+      const hoverRatio = mouseX / width;
+      let hoverIndex = Math.floor(hoverRatio * currentDeck.length);
+      hoverIndex = Math.min(Math.max(hoverIndex, 0), currentDeck.length - 1);
+      // Show short acronym or truncated question in tooltip
+      let card = currentDeck[hoverIndex];
+      let shortAcronym = card.question;
+      if (shortAcronym.length > 15) {
+        shortAcronym = shortAcronym.substring(0, 12) + '...';
+      }
+      progressTooltip.textContent = `${hoverIndex + 1}: ${shortAcronym}`;
+      progressTooltip.style.left = `${mouseX}px`;
+      progressTooltip.style.top = `0px`;
+      progressTooltip.style.display = 'block';
+    });
+
+    progressBarContainer.addEventListener('mouseleave', () => {
+      progressTooltip.style.display = 'none';
     });
 
     prevBtn.addEventListener('click', () => {
@@ -359,6 +258,11 @@
       if (categoryParam) {
         categoryFilter.value = categoryParam;
         categoryFilter.dispatchEvent(new Event('change'));
+        // Hide dropdown and show category title
+        categoryFilter.style.display = 'none';
+        const categoryTitle = document.getElementById('categoryTitle');
+        categoryTitle.textContent = categoryParam;
+        categoryTitle.style.display = 'block';
       }
     });
   </script>

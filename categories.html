@@ -28,27 +28,12 @@
   <main>
     <section>
       <h2 class="section-title">Browse Categories</h2>
-      <div class="categories-grid">
-        <a href="study.html?category=CompTIA%20A%2B%20Core%201%20Terms" class="category-card">
-          <div class="category-icon">🎀</div>
-          <h3>CompTIA A+ Core 1 Terms</h3>
-          <p>42 cards</p>
-        </a>
-        <a href="study.html?category=CompTIA%20A%2B%20Core%202%20Terms" class="category-card">
-          <div class="category-icon">🎀</div>
-          <h3>CompTIA A+ Core 2 Terms</h3>
-          <p>126 cards</p>
-        </a>
-        <a href="study.html?category=CompTIA%20Tech%2B%20Terms" class="category-card">
-          <div class="category-icon">🎀</div>
-          <h3>CompTIA Tech+ Terms</h3>
-          <p>35 cards</p>
-        </a>
-        <a href="study.html?category=Cloud%20%26%20Virtualization" class="category-card">
-          <div class="category-icon">🎀</div>
-          <h3>Cloud & Virtualization</h3>
-          <p>19 cards</p>
-        </a>
+      <div>
+        <input type="text" id="newCategoryInput" placeholder="Enter new category name" class="input-unified" />
+        <button id="addCategoryBtn" class="btn">Add Category</button>
+      </div>
+      <div class="categories-grid" id="categoriesGrid">
+        <!-- Categories will be rendered here dynamically -->
       </div>
     </section>
   </main>
@@ -65,9 +50,70 @@
   </footer>
 
   <script>
-    // Future JavaScript can go here
-  </script>
+    // Default categories with counts
+    const defaultCategories = [
+      { name: "CompTIA A+ Core 1 Terms", count: 42 },
+      { name: "CompTIA A+ Core 2 Terms", count: 126 },
+      { name: "CompTIA Tech+ Terms", count: 35 },
+      { name: "Cloud & Virtualization", count: 19 }
+    ];
 
+    // Load categories from localStorage or use default
+    function loadCategories() {
+      let categories = JSON.parse(localStorage.getItem('categories'));
+      if (!categories) {
+        categories = defaultCategories;
+        localStorage.setItem('categories', JSON.stringify(categories));
+      }
+      return categories;
+    }
+
+    // Save categories to localStorage
+    function saveCategories(categories) {
+      localStorage.setItem('categories', JSON.stringify(categories));
+    }
+
+    // Render categories grid
+    function renderCategories() {
+      const categories = loadCategories();
+      const grid = document.getElementById('categoriesGrid');
+      grid.innerHTML = '';
+      categories.forEach(cat => {
+        const div = document.createElement('div');
+        div.className = 'category-card';
+        div.innerHTML = `
+          <div class="category-icon">🎀</div>
+          <a href="study.html?category=${encodeURIComponent(cat.name)}" class="category-link">
+            <h3>${cat.name}</h3>
+          </a>
+          <p>${cat.count} cards</p>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    // Add new category
+    document.getElementById('addCategoryBtn').addEventListener('click', () => {
+      const input = document.getElementById('newCategoryInput');
+      const newCategory = input.value.trim();
+      if (!newCategory) {
+        alert('Please enter a category name.');
+        return;
+      }
+      let categories = loadCategories();
+      if (categories.some(cat => cat.name.toLowerCase() === newCategory.toLowerCase())) {
+        alert('Category already exists.');
+        return;
+      }
+      categories.push({ name: newCategory, count: 0 });
+      saveCategories(categories);
+      renderCategories();
+      input.value = '';
+    });
+
+    // Initial render
+    renderCategories();
+  </script>
 </body>
 
 </html>

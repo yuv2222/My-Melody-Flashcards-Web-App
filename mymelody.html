@@ -13,7 +13,7 @@
   <header>
     <div class="logo-container">
       <div class="my-melody-icon">
-        <img src="/images/mymelodylogo.png" alt="my melody" width="65" height="65">
+        <img src="images/mymelodylogo.png" alt="my melody" width="65" height="65">
       </div>
       <h1 class="logo-text">My Melody Flashcards</h1>
     </div>
@@ -39,13 +39,13 @@
           <option value="CompTIA Tech+ Terms">CompTIA Tech+ Terms</option>
           <option value="Cloud & Virtualization">Cloud & Virtualization</option>
         </select>
-        <div class="buttons" style="margin-top: 10px;">
+        <div class="buttons">
           <button class="btn" id="prevBtn">Previous</button>
           <button class="btn" id="shuffleBtn">Shuffle</button>
           <button class="btn" id="nextBtn">Next</button>
         </div>
       </div>
-      <div class="flashcard-container" style="margin-top: 20px;">
+      <div class="flashcard-container">
         <div class="flashcard" id="flashcard">
           <div class="flashcard-face flashcard-front" id="flashcard-question">
             Loading...
@@ -62,20 +62,20 @@
         <form id="flashcard-form">
           <div class="form-group">
             <label for="question">Question:</label>
-            <input type="text" id="question" class="form-control" placeholder="Enter your question">
+            <input type="text" id="question" class="form-control" placeholder="Enter your question" required>
           </div>
           <div class="form-group">
             <label for="answer">Answer:</label>
-            <textarea id="answer" class="form-control" rows="3" placeholder="Enter your answer"></textarea>
+            <textarea id="answer" class="form-control" rows="3" placeholder="Enter your answer" required></textarea>
           </div>
           <div class="form-group">
             <label for="category">Category:</label>
-            <select id="category" class="form-control">
+            <select id="category" class="form-control" required>
               <option value="">Select a category</option>
-              <option value="math">Mathematics</option>
-              <option value="science">Science</option>
-              <option value="language">Languages</option>
-              <option value="history">History</option>
+              <option value="CompTIA A+ Core 1 Terms">CompTIA A+ Core 1 Terms</option>
+              <option value="CompTIA A+ Core 2 Terms">CompTIA A+ Core 2 Terms</option>
+              <option value="CompTIA Tech+ Terms">CompTIA Tech+ Terms</option>
+              <option value="Cloud & Virtualization">Cloud & Virtualization</option>
             </select>
           </div>
           <button type="submit" class="btn">Create Flashcard</button>
@@ -85,27 +85,12 @@
 
     <section>
       <h2 class="section-title">Browse Categories</h2>
-      <div class="categories-grid">
-        <div class="category-card">
-          <div class="category-icon">🎀</div>
-          <h3>CompTIA A+ Core 1 Terms</h3>
-          <p>42 cards</p>
-        </div>
-        <div class="category-card">
-          <div class="category-icon">🎀</div>
-          <h3>CompTIA A+ Core 2 Terms</h3>
-          <p>126 cards</p>
-        </div>
-        <div class="category-card">
-          <div class="category-icon">🎀</div>
-          <h3>CompTIA Tech+ Terms</h3>
-          <p>35 cards</p>
-        </div>
-        <div class="category-card">
-          <div class="category-icon">🎀</div>
-          <h3>Cloud & Virtualization</h3>
-          <p>19 cards</p>
-        </div>
+      <div>
+        <input type="text" id="newCategoryInputHome" placeholder="Enter new category name" class="input-unified" />
+        <button id="addCategoryBtnHome" class="btn">Add Category</button>
+      </div>
+      <div class="categories-grid" id="categoriesGridHome">
+        <!-- Categories will be rendered here dynamically -->
       </div>
     </section>
   </main>
@@ -220,6 +205,92 @@
 
     // Initialize flashcards on page load
     loadFlashcards();
+
+    // Flashcard creation form submit handler
+    const flashcardForm = document.getElementById('flashcard-form');
+    flashcardForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const question = document.getElementById('question').value.trim();
+      const answer = document.getElementById('answer').value.trim();
+      const category = document.getElementById('category').value;
+
+      if (question && answer && category) {
+        let storedFlashcards = [];
+        try {
+          storedFlashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
+        } catch (e) {
+          console.error('Error parsing flashcards from localStorage:', e);
+        }
+
+        storedFlashcards.push({ question, answer, category });
+        localStorage.setItem('flashcards', JSON.stringify(storedFlashcards));
+
+        alert('Flashcard created successfully!');
+        flashcardForm.reset();
+      } else {
+        alert('Please fill all required fields.');
+      }
+    });
+
+    // Categories management for home page
+    const defaultCategoriesHome = [
+      { name: "CompTIA A+ Core 1 Terms", count: 42 },
+      { name: "CompTIA A+ Core 2 Terms", count: 126 },
+      { name: "CompTIA Tech+ Terms", count: 35 },
+      { name: "Cloud & Virtualization", count: 19 }
+    ];
+
+    function loadCategoriesHome() {
+      let categories = JSON.parse(localStorage.getItem('categoriesHome'));
+      if (!categories) {
+        categories = defaultCategoriesHome;
+        localStorage.setItem('categoriesHome', JSON.stringify(categories));
+      }
+      return categories;
+    }
+
+    function saveCategoriesHome(categories) {
+      localStorage.setItem('categoriesHome', JSON.stringify(categories));
+    }
+
+    function renderCategoriesHome() {
+      const categories = loadCategoriesHome();
+      const grid = document.getElementById('categoriesGridHome');
+      grid.innerHTML = '';
+      categories.forEach(cat => {
+        const div = document.createElement('div');
+        div.className = 'category-card';
+        div.innerHTML = `
+          <div class="category-icon">🎀</div>
+          <a href="study.html?category=${encodeURIComponent(cat.name)}" class="category-link">
+            <h3>${cat.name}</h3>
+          </a>
+          <p>${cat.count} cards</p>
+        `;
+        grid.appendChild(div);
+      });
+    }
+
+    document.getElementById('addCategoryBtnHome').addEventListener('click', () => {
+      const input = document.getElementById('newCategoryInputHome');
+      const newCategory = input.value.trim();
+      if (!newCategory) {
+        alert('Please enter a category name.');
+        return;
+      }
+      let categories = loadCategoriesHome();
+      if (categories.some(cat => cat.name.toLowerCase() === newCategory.toLowerCase())) {
+        alert('Category already exists.');
+        return;
+      }
+      categories.push({ name: newCategory, count: 0 });
+      saveCategoriesHome(categories);
+      renderCategoriesHome();
+      input.value = '';
+    });
+
+    // Initial render
+    renderCategoriesHome();
   </script>
 </body>
 
