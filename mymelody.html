@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -31,13 +31,26 @@
   <main>
     <section>
       <h2 class="section-title">Study Flashcards</h2>
-      <div class="flashcard-container">
+      <div class="study-controls">
+        <select id="categoryFilter" class="category-select">
+          <option value="all">All Categories</option>
+          <option value="CompTIA A+ Core 1 Terms">CompTIA A+ Core 1 Terms</option>
+          <option value="CompTIA A+ Core 2 Terms">CompTIA A+ Core 2 Terms</option>
+          <option value="CompTIA Tech+ Terms">CompTIA Tech+ Terms</option>
+          <option value="Cloud & Virtualization">Cloud & Virtualization</option>
+        </select>
+        <div class="buttons" style="margin-top: 10px;">
+          <button class="btn" id="prevBtn">Previous</button>
+          <button class="btn" id="shuffleBtn">Shuffle</button>
+          <button class="btn" id="nextBtn">Next</button>
+        </div>
+      </div>
+      <div class="flashcard-container" style="margin-top: 20px;">
         <div class="flashcard" id="flashcard">
-          <div class="flashcard-face flashcard-front">
-            <h3>What is the capital of Japan?</h3>
+          <div class="flashcard-face flashcard-front" id="flashcard-question">
+            Loading...
           </div>
-          <div class="flashcard-face flashcard-back">
-            <h3>Tokyo</h3>
+          <div class="flashcard-face flashcard-back" id="flashcard-answer">
           </div>
         </div>
       </div>
@@ -109,28 +122,104 @@
   </footer>
 
   <script>
-    //Flashcard flip functionality
     const flashcard = document.getElementById('flashcard');
+    const flashcardQuestion = document.getElementById('flashcard-question');
+    const flashcardAnswer = document.getElementById('flashcard-answer');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const shuffleBtn = document.getElementById('shuffleBtn');
+    const categoryFilter = document.getElementById('categoryFilter');
 
-    flashcard.addEventListener('click', function () {
-      this.classList.toggle('flipped');
-    });
+    let flashcards = [];
+    let currentIndex = 0;
+    let currentDeck = [];
 
-    //Simple form handling
-    const flashcardForm = document.getElementById('flashcard-form');
-
-    flashcardForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const question = document.getElementById('question').value;
-      const answer = document.getElementById('answer').value;
-
-      if (question && answer) {
-        alert('Flashcard created successfully!');
-        flashcardForm.reset();
-      } else {
-        alert('Please fill all required fields.');
+    // Load flashcards from localStorage and terms2.json
+    function loadFlashcards() {
+      let storedFlashcards = [];
+      try {
+        storedFlashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
+      } catch (e) {
+        console.error('Error parsing flashcards from localStorage:', e);
       }
+
+      fetch('terms2.json')
+        .then(response => response.json())
+        .then(data => {
+          // Add category field if missing, default to 'uncategorized'
+          const fileFlashcards = data.flashcards.map(card => ({
+            question: card.term,
+            answer: card.definition,
+            category: card.category || 'uncategorized'
+          }));
+
+          // Combine stored flashcards and file flashcards
+          flashcards = [...storedFlashcards, ...fileFlashcards];
+          currentDeck = [...flashcards];
+          updateFlashcard();
+        })
+        .catch(error => {
+          console.error('Error loading flashcards:', error);
+          // Use only stored flashcards if fetch fails
+          flashcards = [...storedFlashcards];
+          currentDeck = [...flashcards];
+          updateFlashcard();
+        });
+    }
+
+    function updateFlashcard() {
+      if (currentDeck.length === 0) {
+        flashcardQuestion.textContent = 'No flashcards available.';
+        flashcardAnswer.textContent = '';
+        return;
+      }
+      const card = currentDeck[currentIndex];
+      flashcardQuestion.textContent = card.question;
+      flashcardAnswer.textContent = card.answer;
+    }
+
+    flashcard.addEventListener('click', () => {
+      flashcard.classList.toggle('flipped');
     });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentDeck.length === 0) return;
+      currentIndex = (currentIndex - 1 + currentDeck.length) % currentDeck.length;
+      flashcard.classList.remove('flipped');
+      updateFlashcard();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (currentDeck.length === 0) return;
+      currentIndex = (currentIndex + 1) % currentDeck.length;
+      flashcard.classList.remove('flipped');
+      updateFlashcard();
+    });
+
+    shuffleBtn.addEventListener('click', () => {
+      for (let i = currentDeck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [currentDeck[i], currentDeck[j]] = [currentDeck[j], currentDeck[i]];
+      }
+      currentIndex = 0;
+      flashcard.classList.remove('flipped');
+      updateFlashcard();
+    });
+
+    categoryFilter.addEventListener('change', () => {
+      const selectedCategory = categoryFilter.value;
+      if (selectedCategory === 'all') {
+        currentDeck = [...flashcards];
+      } else {
+        currentDeck = flashcards.filter(card => card.category === selectedCategory);
+      }
+      currentIndex = 0;
+      flashcard.classList.remove('flipped');
+      updateFlashcard();
+    });
+
+    // Initialize flashcards on page load
+    loadFlashcards();
   </script>
 </body>
 

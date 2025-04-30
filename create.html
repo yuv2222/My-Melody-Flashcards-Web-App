@@ -76,6 +76,20 @@
       const category = document.getElementById('category').value;
 
       if (question && answer && category) {
+        // Retrieve existing flashcards from localStorage
+        let storedFlashcards = [];
+        try {
+          storedFlashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
+        } catch (e) {
+          console.error('Error parsing flashcards from localStorage:', e);
+        }
+
+        // Add new flashcard
+        storedFlashcards.push({ question, answer, category });
+
+        // Save back to localStorage
+        localStorage.setItem('flashcards', JSON.stringify(storedFlashcards));
+
         alert('Flashcard created successfully!');
         flashcardForm.reset();
       } else {

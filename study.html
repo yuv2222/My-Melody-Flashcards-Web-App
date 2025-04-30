@@ -191,6 +191,8 @@
           <option value="Cloud & Virtualization">Cloud & Virtualization</option>
         </select>
 
+        <input type="text" id="searchInput" class="category-select" placeholder="Search terms..." />
+
         <div class="buttons">
           <button class="btn" id="prevBtn">Previous</button>
           <button class="btn" id="shuffleBtn">Shuffle</button>
@@ -242,22 +244,47 @@
     let currentIndex = 0;
     let currentDeck = [];
 
-    fetch('terms2.json')
-      .then(response => response.json())
-      .then(data => {
-        flashcards = data.flashcards.map(card => ({
-          question: card.term,
-          answer: card.definition,
-          category: card.category || 'uncategorized'
-        }));
-        currentDeck = [...flashcards];
-        updateFlashcard();
-      })
-      .catch(error => {
-        console.error('Error loading flashcards:', error);
-      });
+    // Load flashcards from localStorage and terms2.json
+    function loadFlashcards() {
+      let storedFlashcards = [];
+      try {
+        storedFlashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
+      } catch (e) {
+        console.error('Error parsing flashcards from localStorage:', e);
+      }
+
+      fetch('terms2.json')
+        .then(response => response.json())
+        .then(data => {
+          // Add category field if missing, default to 'uncategorized'
+          const fileFlashcards = data.flashcards.map(card => ({
+            question: card.term,
+            answer: card.definition,
+            category: card.category || 'uncategorized'
+          }));
+
+          // Combine stored flashcards and file flashcards
+          flashcards = [...storedFlashcards, ...fileFlashcards];
+          currentDeck = [...flashcards];
+          updateFlashcard();
+        })
+        .catch(error => {
+          console.error('Error loading flashcards:', error);
+          // Use only stored flashcards if fetch fails
+          flashcards = [...storedFlashcards];
+          currentDeck = [...flashcards];
+          updateFlashcard();
+        });
+    }
 
     function updateFlashcard() {
+      if (currentDeck.length === 0) {
+        flashcardQuestion.textContent = 'No flashcards available.';
+        flashcardAnswer.textContent = '';
+        progressDisplay.textContent = '';
+        progressBar.style.width = '0%';
+        return;
+      }
       const card = currentDeck[currentIndex];
       flashcardQuestion.textContent = card.question;
       flashcardAnswer.textContent = card.answer;
@@ -272,12 +299,14 @@
     });
 
     prevBtn.addEventListener('click', () => {
+      if (currentDeck.length === 0) return;
       currentIndex = (currentIndex - 1 + currentDeck.length) % currentDeck.length;
       flashcard.classList.remove('flipped');
       updateFlashcard();
     });
 
     nextBtn.addEventListener('click', () => {
+      if (currentDeck.length === 0) return;
       currentIndex = (currentIndex + 1) % currentDeck.length;
       flashcard.classList.remove('flipped');
       updateFlashcard();
@@ -295,15 +324,42 @@
 
     // Add this event listener for category filtering
     categoryFilter.addEventListener('change', () => {
+      filterFlashcards();
+    });
+
+    // Add event listener for search input
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      filterFlashcards();
+    });
+
+    // Function to filter flashcards by category and search term
+    function filterFlashcards() {
       const selectedCategory = categoryFilter.value;
-      if (selectedCategory === 'all') {
-        currentDeck = [...flashcards];
-      } else {
-        currentDeck = flashcards.filter(card => card.category === selectedCategory);
-      }
+      const searchTerm = searchInput.value.toLowerCase();
+
+      currentDeck = flashcards.filter(card => {
+        const matchesCategory = selectedCategory === 'all' || card.category === selectedCategory;
+        const matchesSearch = card.question.toLowerCase().includes(searchTerm);
+        return matchesCategory && matchesSearch;
+      });
+
       currentIndex = 0;
       flashcard.classList.remove('flipped');
       updateFlashcard();
+    }
+
+    // Initialize flashcards on page load
+    loadFlashcards();
+
+    // On page load, check URL for category query parameter and set filter
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryParam = urlParams.get('category');
+      if (categoryParam) {
+        categoryFilter.value = categoryParam;
+        categoryFilter.dispatchEvent(new Event('change'));
+      }
     });
   </script>
 
