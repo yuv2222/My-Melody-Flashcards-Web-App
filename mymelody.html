@@ -53,6 +53,8 @@
           <div class="flashcard-face flashcard-back" id="flashcard-answer">
           </div>
         </div>
+        <button id="deleteFlashcardBtn" class="btn"
+          style="margin-top: 10px; background-color: #e74c3c; color: white;">Delete Flashcard</button>
       </div>
     </section>
 
@@ -72,10 +74,6 @@
             <label for="category">Category:</label>
             <select id="category" class="form-control" required>
               <option value="">Select a category</option>
-              <option value="CompTIA A+ Core 1 Terms">CompTIA A+ Core 1 Terms</option>
-              <option value="CompTIA A+ Core 2 Terms">CompTIA A+ Core 2 Terms</option>
-              <option value="CompTIA Tech+ Terms">CompTIA Tech+ Terms</option>
-              <option value="Cloud & Virtualization">Cloud & Virtualization</option>
             </select>
           </div>
           <button type="submit" class="btn">Create Flashcard</button>
@@ -94,6 +92,170 @@
       </div>
     </section>
   </main>
+  <script>
+    // Existing script content above...
+
+    // Add delete flashcard functionality
+    const deleteFlashcardBtn = document.getElementById('deleteFlashcardBtn');
+    deleteFlashcardBtn.addEventListener('click', () => {
+      if (flashcards.length === 0) {
+        alert('No flashcards to delete.');
+        return;
+      }
+      const cardToDelete = currentDeck[currentIndex];
+      if (!cardToDelete) {
+        alert('No flashcard selected.');
+        return;
+      }
+      if (!confirm(`Are you sure you want to delete the flashcard: "${cardToDelete.question}"?`)) {
+        return;
+      }
+      // Remove from flashcards array and localStorage
+      flashcards = flashcards.filter(card => !(card.question === cardToDelete.question && card.answer === cardToDelete.answer && card.category === cardToDelete.category));
+      let storedFlashcards = [];
+      try {
+        storedFlashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
+      } catch (e) {
+        console.error('Error parsing flashcards from localStorage:', e);
+      }
+      storedFlashcards = storedFlashcards.filter(card => !(card.question === cardToDelete.question && card.answer === cardToDelete.answer && card.category === cardToDelete.category));
+      localStorage.setItem('flashcards', JSON.stringify(storedFlashcards));
+      // Update currentDeck based on filter
+      const selectedCategory = categoryFilter.value;
+      if (selectedCategory === 'all') {
+        currentDeck = [...flashcards];
+      } else {
+        currentDeck = flashcards.filter(card => card.category === selectedCategory);
+      }
+      // Adjust currentIndex if needed
+      if (currentIndex >= currentDeck.length) {
+        currentIndex = currentDeck.length - 1;
+      }
+      if (currentDeck.length === 0) {
+        flashcardQuestion.textContent = 'No flashcards available.';
+        flashcardAnswer.textContent = '';
+      } else {
+        updateFlashcard();
+      }
+      alert('Flashcard deleted successfully.');
+    });
+
+    // Modify renderCategoriesHome to add delete button for categories
+    -    const originalRenderCategoriesHome = renderCategoriesHome;
+    -    renderCategoriesHome = function() {
+      +    if (typeof originalRenderCategoriesHome === 'undefined') {
+        +      var originalRenderCategoriesHome = renderCategoriesHome;
+        +      renderCategoriesHome = function() {
+          +        const categories = loadCategoriesHome();
+          +        const grid = document.getElementById('categoriesGridHome');
+          +        grid.innerHTML = '';
+          +        categories.forEach(cat => {
+            +          const div = document.createElement('div');
+            +          div.className = 'category-card';
+            +          div.innerHTML = `
++            <div class="category-icon">🎀</div>
++            <a href="study.html?category=${encodeURIComponent(cat.name)}" class="category-link">
++              <h3>${cat.name}</h3>
++            </a>
++            <p>${cat.count} cards</p>
++            <button class="delete-category-btn" data-category="${cat.name}" style="background-color: #e74c3c; color: white; border: none; padding: 4px 8px; cursor: pointer;">Delete</button>
++          `;
+            +          grid.appendChild(div);
+            +        });
+          +
+            +        // Add event listeners for delete buttons
+            +        const deleteButtons = grid.querySelectorAll('.delete-category-btn');
+          +        deleteButtons.forEach(button => {
+            +          button.addEventListener('click', (e) => {
+              +            const categoryName = e.target.getAttribute('data-category');
+              +            if (!confirm(`Are you sure you want to delete the category: "${categoryName}"? This will also delete all flashcards in this category.`)) {
+                +              return;
+                +            }
+              +            // Remove category from categoriesHome
+                +            let categories = loadCategoriesHome();
+              +            categories = categories.filter(cat => cat.name !== categoryName);
+              +            saveCategoriesHome(categories);
+              +            // Remove flashcards in this category
+                +            flashcards = flashcards.filter(card => card.category !== categoryName);
+              +            let storedFlashcards = [];
+              +            try {
+                +              storedFlashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
+                +            } catch (e) {
+                  +              console.error('Error parsing flashcards from localStorage:', e);
+                  +            }
+              +            storedFlashcards = storedFlashcards.filter(card => card.category !== categoryName);
+              +            localStorage.setItem('flashcards', JSON.stringify(storedFlashcards));
+              +            // Update currentDeck and UI
+                +            const selectedCategory = categoryFilter.value;
+              +            if (selectedCategory === 'all') {
+                +              currentDeck =[...flashcards];
+                +            } else {
+                +              currentDeck = flashcards.filter(card => card.category === selectedCategory);
+                +            }
+              +            if (currentIndex >= currentDeck.length) {
+                +              currentIndex = currentDeck.length - 1;
+                +            }
+              +            if (currentDeck.length === 0) {
+                +              flashcardQuestion.textContent = 'No flashcards available.';
+                +              flashcardAnswer.textContent = '';
+                +            } else {
+                +              updateFlashcard();
+                +            }
+              +            renderCategoriesHome();
+              +            alert('Category and its flashcards deleted successfully.');
+              +          });
+            +        });
+          +      };
+        +    }
+      +    renderCategoriesHome();
+
+      // Add event listeners for delete buttons
+      const deleteButtons = grid.querySelectorAll('.delete-category-btn');
+      deleteButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          const categoryName = e.target.getAttribute('data-category');
+          if (!confirm(`Are you sure you want to delete the category: "${categoryName}"? This will also delete all flashcards in this category.`)) {
+            return;
+          }
+          // Remove category from categoriesHome
+          let categories = loadCategoriesHome();
+          categories = categories.filter(cat => cat.name !== categoryName);
+          saveCategoriesHome(categories);
+          // Remove flashcards in this category
+          flashcards = flashcards.filter(card => card.category !== categoryName);
+          let storedFlashcards = [];
+          try {
+            storedFlashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
+          } catch (e) {
+            console.error('Error parsing flashcards from localStorage:', e);
+          }
+          storedFlashcards = storedFlashcards.filter(card => card.category !== categoryName);
+          localStorage.setItem('flashcards', JSON.stringify(storedFlashcards));
+          // Update currentDeck and UI
+          const selectedCategory = categoryFilter.value;
+          if (selectedCategory === 'all') {
+            currentDeck = [...flashcards];
+          } else {
+            currentDeck = flashcards.filter(card => card.category === selectedCategory);
+          }
+          if (currentIndex >= currentDeck.length) {
+            currentIndex = currentDeck.length - 1;
+          }
+          if (currentDeck.length === 0) {
+            flashcardQuestion.textContent = 'No flashcards available.';
+            flashcardAnswer.textContent = '';
+          } else {
+            updateFlashcard();
+          }
+          renderCategoriesHome();
+          alert('Category and its flashcards deleted successfully.');
+        });
+      });
+    };
+
+    // Initial render call replaced with new function
+    renderCategoriesHome();
+  </script>
 
   <footer>
     <div class="footer-content">
@@ -291,6 +453,31 @@
 
     // Initial render
     renderCategoriesHome();
+
+    // Dynamically populate the create flashcards category dropdown
+    function populateCreateCategoryDropdown() {
+      const categories = loadCategoriesHome();
+      const categorySelect = document.getElementById('category');
+      categorySelect.innerHTML = '<option value="">Select a category</option>';
+      categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.name;
+        option.textContent = cat.name;
+        categorySelect.appendChild(option);
+      });
+    }
+
+    // Call initially and whenever categories change
+    populateCreateCategoryDropdown();
+
+    // Override renderCategoriesHome to also update the create category dropdown
+    if (typeof originalRenderCategoriesHome === 'undefined') {
+      var originalRenderCategoriesHome = renderCategoriesHome;
+      renderCategoriesHome = function () {
+        originalRenderCategoriesHome();
+        populateCreateCategoryDropdown();
+      };
+    }
   </script>
 </body>
 

@@ -73,6 +73,7 @@
           Tokyo
         </div>
       </div>
+      <button id="deleteFlashcardBtn" class="btn" style="margin-top: 10px; background-color: #e74c3c; color: white;">Delete Flashcard</button>
     </div>
   </main>
 
@@ -250,6 +251,48 @@
 
     // Initialize flashcards on page load
     loadFlashcards();
+
+    // Add delete flashcard functionality
+    const deleteFlashcardBtn = document.getElementById('deleteFlashcardBtn');
+    deleteFlashcardBtn.addEventListener('click', () => {
+      if (flashcards.length === 0) {
+        alert('No flashcards to delete.');
+        return;
+      }
+      const cardToDelete = currentDeck[currentIndex];
+      if (!cardToDelete) {
+        alert('No flashcard selected.');
+        return;
+      }
+      if (!confirm(`Are you sure you want to delete the flashcard: "${cardToDelete.question}"?`)) {
+        return;
+      }
+      // Remove from flashcards array and localStorage
+      flashcards = flashcards.filter(card => !(card.question === cardToDelete.question && card.answer === cardToDelete.answer && card.category === cardToDelete.category));
+      let storedFlashcards = [];
+      try {
+        storedFlashcards = JSON.parse(localStorage.getItem('flashcards')) || [];
+      } catch (e) {
+        console.error('Error parsing flashcards from localStorage:', e);
+      }
+      storedFlashcards = storedFlashcards.filter(card => !(card.question === cardToDelete.question && card.answer === cardToDelete.answer && card.category === cardToDelete.category));
+      localStorage.setItem('flashcards', JSON.stringify(storedFlashcards));
+      // Update currentDeck based on filter and search
+      filterFlashcards();
+      // Adjust currentIndex if needed
+      if (currentIndex >= currentDeck.length) {
+        currentIndex = currentDeck.length - 1;
+      }
+      if (currentDeck.length === 0) {
+        flashcardQuestion.textContent = 'No flashcards available.';
+        flashcardAnswer.textContent = '';
+        progressDisplay.textContent = '';
+        progressBar.style.width = '0%';
+      } else {
+        updateFlashcard();
+      }
+      alert('Flashcard deleted successfully.');
+    });
 
     // On page load, check URL for category query parameter and set filter
     window.addEventListener('DOMContentLoaded', () => {
